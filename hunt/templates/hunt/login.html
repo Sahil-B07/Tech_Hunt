@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     {% load static %}
-    <link href="{% static 'hunt/style.css' %}" rel="stylesheet">
+    <link href="{% static '/hunt/style.css' %}" rel="stylesheet">
 
 </head>
 
@@ -17,7 +18,7 @@
    
   
 
-<div class="login-page bg-light">
+<div class="login-page">
     <div class="container">
         {% for message in messages  %}            
         <div class="alert alert-{{message.tags}} d-flex align-items-center" role="alert">
