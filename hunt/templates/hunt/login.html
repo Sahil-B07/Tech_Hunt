@@ -14,16 +14,17 @@
 
 <body>
     
-    {% for message in messages  %}            
-    <div class="alert alert-{{message.tags}} d-flex align-items-center" role="alert">
-      <strong>Message : </strong> {{ message }}.
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %} 
+   
   
 
 <div class="login-page bg-light">
     <div class="container">
+        {% for message in messages  %}            
+        <div class="alert alert-{{message.tags}} d-flex align-items-center" role="alert">
+          <strong>Message : </strong> {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %} 
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
                 <h3 class="mb-3">Login Now</h3>

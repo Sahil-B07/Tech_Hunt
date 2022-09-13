@@ -23,24 +23,24 @@
 
   <!-- NavBar -->
 
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/book">
-        Tech Hunt</a>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/hunt/">Register</a>
-          </li>
-          
+        <ul class="navbar-nav mx-auto">
+          <h2 class="text-light"><img width="70" src="{% static 'hunt/tech_hunt.png' %}">
+            Tech Hunt</h2> 
         </ul>
       </div>
+      {% if user.is_authenticated and not user.is_superuser %}
+      <h5 class="text-light mx-lg-4">welcome,&nbsp; {{request.user}}</h5>
+      <a href="/hunt/logout" role="button" class="btn btn-primary m-2 my-sm-0"> Logout </a>
+      {% else %}
+      <a href="/hunt/" role="button" class="btn btn-primary m-2 my-sm-0"> Login </a>
+      {% endif %}
     </div>
   </nav>
   

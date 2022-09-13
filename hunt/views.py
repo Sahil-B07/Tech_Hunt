@@ -1,7 +1,7 @@
 from email import message
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth  import authenticate,  login
+from django.contrib.auth  import authenticate,  login, logout
 from django.contrib import messages 
 
 # Create your views here.
@@ -16,7 +16,6 @@ def handleLogin(request):
         logId = request.POST['loginId']
     
         user = authenticate(username=logId, password='hunter')
-        print(user)
 
         if user is not None:
             login(request, user)
@@ -25,11 +24,20 @@ def handleLogin(request):
         else:
             messages.warning(request, 'Invalid credentials.')
             return redirect('logForm')
-    
-    return HttpResponse('100 Not Found')
+    else:
+        return HttpResponse('404 Not Found')
 
+
+def handelLogout(request):
+    logout(request)
+    messages.success(request, "Successfully logged out")
+    return redirect('home')
+    
 def home(request):
-    return render(request, 'hunt/base.html')
+    if request.method == 'POST':
+        return render(request, 'hunt/base.html')
+    else:
+        return render(request, 'hunt/base.html')
 
 def handleregister(request):
     if request.method == 'POST':
@@ -38,6 +46,6 @@ def handleregister(request):
         myuser = User.objects.create_user(username=registerId, password='hunter')
         myuser.save()
         messages.success(request, f"{registerId} has been registered.")
-        return redirect('home')
+        return redirect('/hunt/')
     else:
         return HttpResponse('404 Not Found')
