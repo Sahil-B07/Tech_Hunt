@@ -7,12 +7,13 @@ with open('questions.csv', 'r') as f:
 data = data.split('\n')
 for i in data:
     d = i.strip().split(",")
-    queries.append(f"INSERT INTO hunt_question VALUES ({d[0].strip()}, '{d[1].strip()}', '{d[2].strip()}', '{d[3].strip()}')")
+    queries.append(f"INSERT INTO hunt_question VALUES({d[0].strip()}, '{d[2].strip()}', '{d[3].strip()}', '{d[1].strip()}')")
 
 connection = sqlite3.connect('db.sqlite3')
 cur = connection.cursor()
 cur.execute('DELETE FROM hunt_question')
 for i in queries:
+    print(i)
     cur.execute(i)
 
 data = cur.execute("SELECT * from hunt_question").fetchall()
