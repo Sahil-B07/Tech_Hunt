@@ -3,9 +3,9 @@ from django.db import models
 # Create your models here.
 class Question(models.Model):
     q_id = models.AutoField
-    question = models.CharField(max_length=1000)
+    question = models.CharField(max_length=5000)
     answer = models.CharField(max_length=1000)
-    level = models.CharField(max_length=1)
+    level = models.CharField(max_length=2)
 
 class Team(models.Model):
     team_username = models.CharField(max_length=150)

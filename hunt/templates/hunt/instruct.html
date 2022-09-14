@@ -20,15 +20,13 @@
     @import url(https://fonts.googleapis.com/css?family=Indie+Flower);
 
     body {
-      margin: 0;
-      padding: 0;
       background: lightgoldenrodyellow;
     }
 
     .paper {
       position: absolute;
-      height: 669px;
-      width: 450px;
+      height: 900px;
+      width: 600px;
       background: rgba(255, 255, 255, 0.9);
       box-shadow: 0px 0px 5px 0px #888;
     }
@@ -86,34 +84,52 @@
 </head>
 
 <body>
-  <div class="container d-flex justify-content-center mt-lg-5">
+  <div class="container mb-lg-5" >
+    <form action="/hunt/" method="post">
+      {% csrf_token %}
+      <div class="text-center mt-lg-3 mb-lg-3">
+        <button type="submit" class="btn btn-outline-danger">Let's Hunt <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+    </form>
+  <div class="row container d-flex justify-content-center" style="margin-bottom: 60rem;">
     <div class="paper">
       <div class="lines">
         <div class="text" contenteditable spellcheck="false">
-          <h2><strong>Instructions :</strong></h2> <br><br>
-            <pre class="float-start text-wrap"><b>
-              1.Cupcake ipsum dolor sit amet liquorice fruitcake. <br>
-              2.Candy canes jelly beans sweet roll cupcake lollipop. <br>
-              3.Powder carrot cake toffee brownie. <br>
-              4.Marshmallow sweet roll donut. <br>
-              5.Chocolate cake apple pie candy canes tiramisu dragée wafer. <br>
-              6.Croissant cookie lemon drops tiramisu jelly-o donut. <br>
-              7.Sweet gummi bears ice cream.<br></b>
-            </pre>
+          <h2><strong>📜RULES📜 :</strong></h2> <br><br>
+          <div class="float-start text-wrap"><b>
+              This teach hunt is made up of five rounds. On solving each round you'll get a key, which you have to enter
+              into the website. On doing so you'll unlock the next round which will eventually lead you to the treasure.
+              💰
+              <br><br>
+              To begin you'll have to scan the qr code and then login to the website.
+              <br><br>
+              Round One : Encode Decode<br>
+              1) In this round you'll be given a code which you'll have to decode to reveal a location. <br>
+              2) On going to the location you'll get a key which you'll have to enter on the website to unlock the next
+              round.<br>
+              <br><br>
+              Round Two : Puzzle Round<br>
+              Solve the puzzle and you'll get a key. <br>
+              <br><br>
+              Round Three : Coding Round<br>
+              1)You'll be given a code which you'll have to run. <br>
+              2)On running the code successfully the volunteers will give you a clue to solve.<br>
+              3) Solving the clue will reveal a location where you'll get a key. <br>
+              <br><br>
+              Round four : <br>
+              On solving the clue given to you you'll get a key. <br>
+              <br><br>
+              Round five : final round<br>
+              The final round will lead you to the treasure.<br></b>
           </div>
         </div>
-        <div class="holes hole-top"></div>
-        <div class="holes hole-middle"></div>
-        <div class="holes hole-bottom"></div>
-
-        <form action="/hunt/" method="post">
-          {% csrf_token %} 
-        <div class="text-center">
-          <button type="submit" class="nextbtn">Let's Hunt <i class="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </div>
-      </form>
       </div>
+      <div class="holes hole-top"></div>
+      <div class="holes hole-middle"></div>
+      <div class="holes hole-bottom"></div>
+    </div>
+  </div>
   </div>
   <!-- Optional JavaScript; choose one of the two! -->
 
