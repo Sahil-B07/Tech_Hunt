@@ -30,14 +30,12 @@ def handleLogin(request):
     else:
         return HttpResponse('404 Not Found')
 
-
 def handelLogout(request):
     logout(request)
     messages.success(request, "Successfully logged out")
     return redirect('/hunt/')
     
 def home(request):
-
     if request.user.is_authenticated:
 
         q = Team.objects.filter(team_username= request.user).values('questions')[0]['questions'].split(',')
@@ -57,42 +55,76 @@ def home(request):
     else:
         return render(request, 'hunt/login.html')
 
-
 def handleregister(request):
     if request.method == 'POST':
         registerIds = request.POST['regId']
         registerIds = registerIds.split(",")
-        
-        for registerId in registerIds:
-            registerId = registerId.strip()
-            myuser = User.objects.create_user(username=registerId, password='hunter')
-            myuser.save()
+        quesNos = Question.objects.values('id', 'level')
+        print(quesNos)
+        r1 = []
+        r2 = []
+        r3 = []
+        r4 = []
 
-            quesNos = Question.objects.values('id', 'level')
+        for i in quesNos:
+            if i['level'] == 'R1':
+                r1.append(str(i['id']))
+            if i['level'] == 'R2':
+                r2.append(str(i['id']))
+            if i['level'] == 'R3':
+                r3.append(str(i['id']))
+            if i['level'] == 'R4':
+                r4.append(str(i['id']))
 
-            e = []
-            m = []
-            h = []
+        if len(registerIds) != 20:
+            for registerId in registerIds:
+                registerId = registerId.strip()
+                myuser = User.objects.create_user(username=registerId, password='hunter')
+                myuser.save()
+                qlist = random.choice(r1) + ',' + random.choice(r2) + ',' + random.choice(r3) + ',' + random.choice(r4) + ',0'
+                Team.objects.create(team_username=registerId, questions = qlist,time_started = datetime.now(),time_finished = datetime.now(),questions_answered = 0)
+                messages.success(request, f"{registerId} has been registered.")
 
-            for i in quesNos:
-                if i['level'] == 'E':
-                    e.append(str(i['id']))
-                if i['level'] == 'M':
-                    m.append(str(i['id']))
-                if i['level'] == 'H':
-                    h.append(str(i['id']))
-                
-            qlist = (','.join(random.sample(e, 2)))  +','+  (','.join(random.sample(m, 2))) +','+ (','.join(random.sample(h, 1)))
+        else:
+            d = {}
 
-            Team.objects.create(team_username=registerId, questions = qlist,time_started = datetime.now(),time_finished = datetime.now(),questions_answered = 0)
+            temp = registerIds
+            for i in r1:
+                data = random.sample(temp, 2)
+                d[data[0]] = f"{i},"
+                d[data[1]] = f"{i},"
+                temp.remove(d[data[0]])
+                temp.remove(d[data[1]])
             
-            messages.success(request, f"{registerId} has been registered.")
+            temp = registerIds
+            for i in r2:
+                data = random.sample(temp, 2)
+                d[data[0]] += f"{i},"
+                d[data[1]] += f"{i},"
+                temp.remove(d[data[0]])
+                temp.remove(d[data[1]])
+
+            temp = registerIds
+            for i in r3:
+                data = random.sample(temp, 2)
+                d[data[0]] += f"{i},"
+                d[data[1]] += f"{i},"
+                temp.remove(d[data[0]])
+                temp.remove(d[data[1]])
+
+            temp = registerIds
+            for i in r4:
+                data = random.sample(temp, 2)
+                d[data[0]] += f"{i},0"
+                d[data[1]] += f"{i},0"
+                temp.remove(d[data[0]])
+                temp.remove(d[data[1]])
+
         return redirect('/hunt/')
     else:
         return HttpResponse('404 Not Found')
 
 def handleAnswer(request):
-    
     if request.method == 'POST':
         q = Team.objects.filter(team_username= request.user).values('questions')[0]['questions'].split(',')
         teamQuestions = []
