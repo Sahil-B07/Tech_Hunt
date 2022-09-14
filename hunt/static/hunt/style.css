@@ -19,12 +19,14 @@ body {
     background: #eee
 }
 
+
+
 #regForm {
     background-color: #ffffff;
     margin: 0px auto;
     font-family: Raleway;
     padding: 40px;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 #register{
@@ -33,7 +35,11 @@ body {
 }
 
 h1 {
-    text-align: center
+    text-align: center;
+}
+
+h6 {
+    font-size: larger;
 }
 
 input {
@@ -59,34 +65,26 @@ input.invalid {
     border:1px solid #e03a0666;
 }
 
-.tab {
-    display: none
-}
-
-button {
-    background-color: #6A1B9A;
+.nextbtn {
+    background-color: #260D59;
     color: #ffffff;
     border: none;
-    border-radius: 50%;
+    border-radius: 5px;
     padding: 10px 20px;
     font-size: 17px;
     font-family: Raleway;
-    cursor: pointer
+    cursor: pointer;
 }
 
-button:hover {
-    opacity: 0.8
+
+.nextbtn:hover {
+    background-color: #34127a;
+    color:white;
 }
 
-button:focus{
-
+.nextbtn:focus{
   outline: none !important;
 }
-
-#prevBtn {
-    background-color: #bbbbbb
-}
-
 
 .all-steps{
       text-align: center;
@@ -98,7 +96,7 @@ button:focus{
 }
 
 .step {
-       height: 40px;
+    height: 40px;
     width: 40px;
     margin: 0 2px;
     background-color: #bbbbbb;
@@ -111,25 +109,14 @@ button:focus{
     color: #6a1b9a;
     opacity: 0.5;
 }
-
 .step.active {
     opacity: 1
 }
-
-
-.step.finish {
-   color: #fff;
-   background: #6a1b9a;
-   opacity: 1;
-
-}
-
 .all-steps {
     text-align: center;
     margin-top: 30px;
     margin-bottom: 30px
 }
-
 .thanks-message {
     display: none
 }

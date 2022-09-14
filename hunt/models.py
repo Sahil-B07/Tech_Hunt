@@ -13,3 +13,6 @@ class Team(models.Model):
     time_started = models.TimeField()
     time_finished = models.TimeField()
     questions_answered = models.IntegerField()
+
+    def __str__(self):
+        return self.team_username
